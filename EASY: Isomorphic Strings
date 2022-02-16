@@ -1,0 +1,25 @@
+// own solution
+
+class Solution {
+public:
+    bool isIsomorphic(string s, string t)
+    {
+        return (isIsomorphicc(s, t) && isIsomorphicc(t, s));
+    }
+    
+    bool isIsomorphicc(string s, string t) {
+        unordered_map<char, char> mapp;
+        for(int i=0; i<s.size();i++)
+        {
+            if(mapp.find(s[i])==mapp.end())
+            {
+                mapp[s[i]]=t[i];
+            }
+            if(mapp[s[i]]!=t[i])
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+};
