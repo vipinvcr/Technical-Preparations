@@ -1,0 +1,27 @@
+class Solution {
+public:
+    
+    int calculate(vector<int> &nums, int s, int e, int turn)
+    {
+        if(s==e)
+        {
+            return nums[s];
+        }
+        int chS= turn*nums[s] + calculate(nums, s+1, e, -turn);
+        int chE= turn*nums[e] + calculate(nums, s, e-1, -turn);
+        
+        if(turn==1)
+        {
+            return max(chS, chE);
+        }
+        else
+        {
+            return min(chS, chE);
+        }
+    }
+    
+    bool PredictTheWinner(vector<int>& nums) {
+        int n=nums.size();
+        return calculate(nums, 0, n-1, 1)>=0;
+    }
+};
